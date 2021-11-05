@@ -1,10 +1,25 @@
 Question 1: What authentication scheme is used by default in Django Rest Framework's browsable API? How is this managed?
+BasicAuthentication and SessionAuthentication are used by default.
+In setting.py, modify 'DEFAULT_AUTHENTICATION_CLASSES' to manage authentication scheme.
 
 Question 2: What authentication scheme is used by httpie when querying with the -a or --auth option flag?
+SessionAuthentication since we give usernamea and password.
 
 Question 3: What is the difference between Session Authentication and Token Authentication? How is Token Authentication an improvement over Basic Authentication?
+In the session based authentication, the server will create a session for the user after the user logs in.
+But in token authentication, the server would just validate the token with every request from the client and sends response.
+In tokenAuthentication client application does not need to save the credentials locally, The client application sends the credentials once for the initial login, then forget them as long as you do not need to re-authorize the application, when the client application prompts the user to enter again.
 
 Question 4: Provide a high level summary of what happens during an OAuth2 authentication flow. For instance: bitbucket.org > Log In > Log in with Google. What happens when I click "Log in with Google"?
+The application requests authorization to access service resources from the user
+If the user authorized the request, the application receives an authorization grant
+The application requests an access token from the authorization server (API) by presenting authentication of its own identity, and the authorization grant
+If the application identity is authenticated and the authorization grant is valid, the authorization server (API) issues an access token to the application. Authorization is complete.
+The application requests the resource from the resource server (API) and presents the access token for authentication
+If the access token is valid, the resource server (API) serves the resource to the application
+
+In summary, User allow and choose login method, then user login through an authorization server, and authorization server automatically generate a token ang give it to the resource Server.
+In the flow, we have low coupling since an independent authorization server responsible for authority verify.
 
 Question 5: Please provide a link to your code.
 https://github.com/Dragon11150221/authentication-lab
